@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+    <h3 th:text="${titulo}"></h3>
+    <form th:action="@{/form}" th:object="${user}" method="post">
+
+        <div>
+            <label for="id">id</label>
+            <div>
+                <input type="text" id="id" th:field="*{id}">
+            </div>
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+        </div>
+
+        <div>
+            <label for="nombre">nombre</label>
+            <div>
+                <input type="text" id="nombre" th:field="*{nombre}">
+            </div>
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+        </div>
+
+        <div>
+            <label for="apellido">apellido</label>
+            <div>
+                <input type="text" id="apellido" th:field="*{apellido}">
+            </div>
+            <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+        </div>
+
+        <div>
+            <label for="username">username</label>
+            <div>
+                <input type="text" id="username" th:field="*{username}">
+            </div>
+            <!-- <div th:if="${error != null && error.containsKey('username')}" th:text="${error.get('username')}"></div> -->
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+
+        <div>
+            <label for="password">password</label>
+            <div>
+                <input type="password" name="password" id="password" th:field="*{password}">
+            </div>
+            <!-- <div th:if="${error != null && error.containsKey('password')}" th:text="${error.get('password')}"></div> -->
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+
+        <div>
+            <label for="email">email</label>
+            <div>
+                <input type="email" name="email" id="email" th:value="${user.email}">
+            </div>
+            <!-- <div th:if="${error != null && error.containsKey('email')}" th:text="${error.get('email')}"></div> -->
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <div>
+            <label for="cuenta">cuenta</label>
+            <div>
+                <input type="number" id="cuenta" th:field="*{cuenta}">
+            </div>
+            <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+        </div>
+
+        <div>
+            <label for="fechaNacimiento">fechaNacimiento</label>
+            <div>
+                <input type="date" id="fechaNacimiento" placeholder="yyyy/MM/dd" th:field="*{fechaNacimiento}">
+            </div>
+            <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Enviar">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
