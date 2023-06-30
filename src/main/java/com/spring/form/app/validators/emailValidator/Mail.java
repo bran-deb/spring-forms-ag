@@ -10,10 +10,15 @@ import static java.lang.annotation.ElementType.FIELD;
 import java.lang.annotation.Target;
 
 import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-@Constraint(validatedBy = EmailValidator.class)
+@Constraint(validatedBy = MailValidator.class)
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
-public @interface Email {
+public @interface Mail {
+    String message() default "No tiene el formato de un email";
 
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

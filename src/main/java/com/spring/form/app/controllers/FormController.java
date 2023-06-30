@@ -1,5 +1,6 @@
 package com.spring.form.app.controllers;
 
+import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.spring.form.app.editors.NombreMayusEditor;
+import com.spring.form.app.editors.NombreMinusEditor;
 import com.spring.form.app.models.domain.User;
 import com.spring.form.app.validators.UserValidator;
 
@@ -34,7 +37,26 @@ public class FormController {
         binder.addValidators(validator); // agrega el validador
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false); // no permite fechas con formato incorrecto(estricto)
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));// transforma date
+        binder.registerCustomEditor(
+                Date.class,
+                "fechaNacimiento", // nombre del atributo para que no aplique en todos los date
+                new CustomDateEditor(dateFormat, true));// registra un filtro para date
+        binder.registerCustomEditor(
+                String.class,
+                "nombre", // atributo al que aplica
+                new NombreMayusEditor()); // registra un filtro personalizado
+        binder.registerCustomEditor(
+                String.class,
+                "apellido",
+                new NombreMayusEditor());
+        binder.registerCustomEditor(
+                String.class,
+                "username",
+                new NombreMinusEditor());
+        binder.registerCustomEditor(
+                String.class,
+                "password",
+                new NombreMinusEditor());
     }
 
     @GetMapping("/form")
