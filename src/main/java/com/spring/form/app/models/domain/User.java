@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.spring.form.app.validators.idValidator.IdentificadorRegex;
 import com.spring.form.app.validators.requiredValidator.Requerido;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -54,6 +55,9 @@ public class User {
     // @Future
     // @DateTimeFormat(pattern = "yyyy-MM-dd") // para formatear la fecha
     private Date fechaNacimiento;
+
+    @Valid
+    private Pais pais;
 
     public String getId() {
         return id;
@@ -117,5 +121,13 @@ public class User {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 }
