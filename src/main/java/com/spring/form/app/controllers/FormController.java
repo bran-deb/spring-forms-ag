@@ -1,8 +1,11 @@
 package com.spring.form.app.controllers;
 
-import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.spring.form.app.editors.NombreMayusEditor;
 import com.spring.form.app.editors.NombreMinusEditor;
+import com.spring.form.app.models.domain.Pais;
 import com.spring.form.app.models.domain.User;
 import com.spring.form.app.validators.UserValidator;
 
@@ -57,6 +61,32 @@ public class FormController {
                 String.class,
                 "password",
                 new NombreMinusEditor());
+    }
+
+    // lista que se pasa a la vista(select)
+    @ModelAttribute("paises") // se pasa el nombre de la variable
+    public List<String> getPaises() {
+        return Arrays.asList("España", "Mexico", "Chile", "Peru");
+    }
+
+    // lista que se pasa a la vista(select)
+    @ModelAttribute("listaPaises") // se pasa el nombre de la variable
+    public List<Pais> listaPaises() {
+        return Arrays.asList(
+                new Pais(1, "ES", "España"),
+                new Pais(2, "MX", "Mexico"),
+                new Pais(3, "CH", "Chile"),
+                new Pais(4, "PE", "Peru"));
+    }
+
+    @ModelAttribute("paisesMap") // se pasa el nombre de la variable
+    public Map<String, String> getPaisesMap() {
+        Map<String, String> paises = new HashMap<String, String>();
+        paises.put("ES", "España");
+        paises.put("MX", "Mexico");
+        paises.put("CH", "Chile");
+        paises.put("PE", "Peru");
+        return paises;
     }
 
     @GetMapping("/form")
