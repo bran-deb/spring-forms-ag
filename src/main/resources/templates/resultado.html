@@ -6,6 +6,7 @@
 </head>
 <body>
     <h3 th:text="${titulo}"></h3>
+    <div th:text="${user.pais.codigo}"></div>
     <div th:text="${user.nombre}"></div>
     <div th:text="${user.apellido}"></div>
     <div th:text="${user.username}"></div>
@@ -13,6 +14,7 @@
     <div th:text="${user.email}"></div>
     <div th:text="${user.id}"></div>
     <div th:text="${user.cuenta}"></div>
-    <div th:text="${user.fechaNacimiento}"></div>
+    <div th:text="${#calendars.format(user.fechaNacimiento,'dd-MM-yyyy')}"></div>
+    <!-- <div th:text="${#dates.format(user.fechaNacimiento,'dd/MM/yyyy')}"></div> -->
 </body>
 </html>

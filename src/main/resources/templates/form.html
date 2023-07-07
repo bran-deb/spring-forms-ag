@@ -9,6 +9,17 @@
     <form th:action="@{/form}" th:object="${user}" method="post">
 
         <div>
+            <label for="pais.codigo">Pais</label>
+            <div>
+                <select id="pais" th:field="*{pais.codigo}">
+                    <option value="">--Seleccionar--</option>
+                    <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.codigo}"></option>
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors('pais.codigo')}" th:errors="*{pais.codigo}"></div>
+        </div>
+
+        <div>
             <label for="id">id</label>
             <div>
                 <input type="text" id="id" th:field="*{id}">
